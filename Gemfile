@@ -7,11 +7,14 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'therubyracer', platforms: :ruby
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'haml-rails'
 gem 'bootstrap-sass'
 gem 'faraday'
+gem 'faraday_middleware'
+gem 'faraday_middleware-parse_oj', '~> 0.3.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
