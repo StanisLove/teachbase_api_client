@@ -17,14 +17,15 @@ module ClientApi
   end
 
   def self.get_items
+    @token ||= access_token
+
     conn = Faraday.new(url: 'http://s1.teachbase.ru') do |faraday|
-      faraday.request :oauth2, access_token
+      faraday.request :oauth2, @token
       faraday.response :oj
       faraday.adapter Faraday.default_adapter
     end
 
-    @token ||= access_token
-    @items = (conn.get '/endpoint/v1/course_sessions',
-      { 'Authorization' => "Bearer #{@token}" }).body
+    @items = conn.get '/endpoint/v1/course_sessions',
+      { 'Authorization' => "Bearer #{@token}" }
   end
 end
