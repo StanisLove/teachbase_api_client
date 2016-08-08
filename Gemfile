@@ -15,6 +15,7 @@ gem 'bootstrap-sass'
 gem 'faraday'
 gem 'faraday_middleware'
 gem 'faraday_middleware-parse_oj', '~> 0.3.0'
+gem 'kaminari'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
