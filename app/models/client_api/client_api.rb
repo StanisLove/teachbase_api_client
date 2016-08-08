@@ -23,7 +23,8 @@ module ClientApi
       faraday.adapter Faraday.default_adapter
     end
 
+    @token ||= access_token
     @items = (conn.get '/endpoint/v1/course_sessions',
-      { 'Authorization' => "Bearer #{access_token}" }).body
+      { 'Authorization' => "Bearer #{@token}" }).body
   end
 end

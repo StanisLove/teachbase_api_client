@@ -3,9 +3,9 @@ class Course < ActiveRecord::Base
   mount_uploader :thumb_image, CourseImageUploader
   include ClientApi
 
-  def self.save_into_db
-    ClientApi.get_items.each do |item|
-      if Course.find_by_course_id(item['course']['id']).try(:course_updated_at) != item['course']['updated_at'] &&
+  def self.save_into_db(items = ClientApi.get_items)
+    items.each do |item|
+      if Course.find_by_course_id(item['course_id']).try(:course_updated_at) != item['course']['updated_at'] &&
         item['access_type'] == 'open'
         create!(
                        name: item['course']['name'],
