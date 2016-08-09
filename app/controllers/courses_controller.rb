@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
   before_action :load_courses_and_status
   def index
     if @status == 404
-      flash[:alert] = "В данный момент Teachbase недоступен. Загружена копия от #{@fall_time.strftime("%Y-%m-%d %H:%M")}."
+      flash[:alert] = "В данный момент Teachbase недоступен. Загружена копия от #{@fall_time.strftime("%d.%m.%Y %H:%M")}."
     elsif @status == 0
       flash[:alert] = "Teachbase лежит уже #{@downtime} часов"
     end

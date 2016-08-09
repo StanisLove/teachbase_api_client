@@ -2,17 +2,19 @@
   %h1.title= t('.title')
 
 .row
-  %ul.list
-    - @courses.each do |course|
-      %li.list-item
-        = link_to image_tag("#{course.thumb_image_url}"), course.url, class: 'image'
-        .info
-          %p= link_to course.name, course.url
-          %p= course.description
-          %p= course.owner_name.titleize
-          %p= "#{l(course.started_at, format: :day)} - #{l(course.finished_at, format: :day)}" if course.started_at && course.finished_at
-  .pagination
+  - if @courses.present?
+    %ul.list
+      - @courses.each do |course|
+        %li.list-item
+          = link_to image_tag("#{course.thumb_image_url}"), course.url, class: 'image'
+          .info
+            %p= link_to course.name, course.url
+            %p= course.description
+            %p= course.owner_name.titleize
+            %p= "#{l(course.started_at, format: :day)} - #{l(course.finished_at, format: :day)}" if course.started_at && course.finished_at
     - if @status == 200
       = paginate @courses
     - else
       - paginate @courses
+  - else
+    %p There are no open courses in Teachbase
