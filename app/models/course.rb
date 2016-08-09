@@ -18,6 +18,10 @@ class Course < ActiveRecord::Base
     end
   end
 
+  def self.status
+    request_and_save if first.try(:response_status) == 200 || first.try(:response_status).nil?
+    first.response_status
+  end
 
   private
     def self.create_course(item)
@@ -57,4 +61,5 @@ class Course < ActiveRecord::Base
     def self.delete_fake_course
       find_by_course_id(0).try(:delete)
     end
+
 end
