@@ -3,7 +3,7 @@ class Course < ActiveRecord::Base
   mount_uploader :thumb_image, CourseImageUploader
   include ClientApi
 
-  def self.save_into_db(response = ClientApi.get_items)
+  def self.request_and_save(response = ClientApi.get_items)
     if response.status == 200
       delete_fake_course
 
@@ -45,6 +45,7 @@ class Course < ActiveRecord::Base
     end
 
     def self.course_updated(item)
+      find_by_course_id(item['course_id']) &&
       find_by_course_id(item['course_id']).course_updated_at != item['course']['updated_at']
     end
 

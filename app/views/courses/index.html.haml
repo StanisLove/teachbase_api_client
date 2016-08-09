@@ -10,6 +10,9 @@
           %p= link_to course.name, course.url
           %p= course.description
           %p= course.owner_name.titleize
-          %p= "#{l(course.started_at, format: :day)} - #{l(course.finished_at, format: :day)}"
+          %p= "#{l(course.started_at, format: :day)} - #{l(course.finished_at, format: :day)}" if course.started_at && course.finished_at
   .pagination
-    = paginate @courses
+    - if @status == 200
+      = paginate @courses
+    - else
+      - paginate @courses
