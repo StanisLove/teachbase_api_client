@@ -12,7 +12,7 @@ class Course < ActiveRecord::Base
         update_course(item) if course_updated(item)
       end
 
-      update_all(response_status: 200)
+      where.not(response_status: 200).update_all(response_status: 200)
     else
       any? ? update_all(response_status: 404, updated_at: Time.now) : create_fake_course
     end
