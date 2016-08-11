@@ -11,7 +11,6 @@ feature 'User browse courses' do
       within "ul.list" do
         expect(page).to have_selector('.list-item', count: 2)
       end
-
       expect(page).to have_selector('.pagination')
     end
   end

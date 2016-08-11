@@ -23,7 +23,7 @@ RSpec.describe CoursesController, type: :controller do
       end
 
        it 'sends request' do
-         expect(Course).to receive(:request_and_save)
+         expect(ResponseHandler).to receive(:request_and_save)
          get :index
        end
     end
@@ -47,7 +47,7 @@ RSpec.describe CoursesController, type: :controller do
       end
 
        it 'does not send request' do
-         expect(Course).not_to receive(:request_and_save)
+         expect(ResponseHandler).not_to receive(:request_and_save)
          get :index
        end
     end
